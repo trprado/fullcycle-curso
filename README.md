@@ -7,7 +7,7 @@ Resolução da serie de desafios do curso FullCycle da [Code.Education](https://
     + [Tabela de Conteúdo](#tabela-de-conteúdo)
     + [Desafio Docker](#desafio-docker)
         * [Desafio 1 - Golang](#desafio-1---golang)
-        * [Desafio 2 - MySQL/Node/Nginx](#desafio-2---mysql/node/nginx)
+        * [Desafio 2 - MySQL/Node/Nginx](#desafio-2---mysql-node-nginx)
 
 ## Desafio Docker
 Desafios Docker/Containers.
