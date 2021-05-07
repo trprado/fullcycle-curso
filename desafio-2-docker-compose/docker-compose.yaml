@@ -1,0 +1,40 @@
+version: "3.8"
+
+services: 
+    db:
+        image: mariadb:10.5-focal
+        container_name: db
+        restart: unless-stopped
+        env_file: db.env
+        volumes:
+            - ./db/sql/:/docker-entrypoint-initdb.d/
+        networks: 
+            - desafio
+        
+    app:
+        build: 
+            context: app
+        container_name: app
+        restart: unless-stopped
+        depends_on: 
+            - db
+        expose:
+            - 3000
+        networks: 
+            - desafio
+
+    proxy:
+        image: nginx:1.20-alpine
+        container_name: proxy
+        restart: unless-stopped
+        volumes: 
+            - ./proxy/:/etc/nginx/conf.d/
+        depends_on: 
+            - app
+        ports: 
+            - 8080:80
+        networks: 
+            - desafio
+
+networks:
+    desafio:
