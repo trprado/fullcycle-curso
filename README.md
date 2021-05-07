@@ -7,7 +7,7 @@ Resolução da serie de desafios do curso FullCycle da [Code.Education](https://
     + [Tabela de Conteúdo](#tabela-de-conteúdo)
     + [Desafio Docker](#desafio-docker)
         * [Desafio 1 - Golang](#desafio-1---golang)
-        * [Desafio 2 - Node/Nginx](#desafio-2---node\/nginx)
+        * [Desafio 2 - MySQL/Node/Nginx](#desafio-2---node\/nginx)
 
 ## Desafio Docker
 Desafios Docker/Containers.
@@ -40,3 +40,45 @@ docker run --rm trprado/desafio-go
 
 
 ### Desafio 2 - Node/Nginx
+**links**: 
+- [Pasta Desafio 2 - Compose](desafio-2-docker-compose)
+- [Compose](desafio-2-docker-compose/docker-compose.yaml)
+- [Banco de Dados - SQL](desafio-2-docker-compose/db/sql/people.sql)
+- [Node - Dockerfile](desafio-2-docker-compose/app/Dockerfile)
+- [Node - Código App](desafio-2-docker-compose/app/server.js)
+- [Nginx - Configuração](desafio-2-docker-compose/proxy/nginx.conf)
+
+Esse compose foi criado para o Desafio 2 Mysql/Node/Nginx. Se trata de um arquivo com o padrão compose usado em conjunto com o Docker Compose para subir três serviços de container, sendo um deles uma imagem com a aplicação.
+
+Para o banco de dados foi utilizada a imagem padrão *Mariadb:10.5-focal*, para a aplicação node, foi utilizada a imagem *node:16-alpine3.13*, nessa imagem também foi instalado a aplicação **dockerize** para ter a funcionalidade de aguardar o container de banco de dados terminar seu carregamento. Para os serviços foram instalados por meio do npm os seguintes modulos: **express** e **mysql**. Já para o container responsável pelo próxy foi utilizado a imagem *nginx:1.20-alpine* e reescrita o arquivo **nginx.conf**.
+
+O banco de dados esta exposto apenas para a rede interna dos containers na porta **3306**, a aplicação node esta também exposta apenas na rede interna dos constainers na porta **3000**, por fim o nginx faz o proxy reverso na porta **80** mas expoem para a rede local do computador na porta **8080**. Assim o acesso pode ser feito depois de todos os serviços carregados no link [http://localhost:8080](http://localhost:8080).
+
+Para execultar os serviços a primeira vez, execute:
+```bash
+docker-compose up --build -d
+```
+
+O argumento `--build` ira gerar a imagem da aplicação, nas demais vezes esse comando pode ser omitido. O argumento `-d` ira desacoplar os serviços do terminal.
+
+Para verificar os serviços em execução, pode ser feito de duas formas:
+```bash
+docker ps
+```
+Ou simplesmente 
+```bash
+docker-compose ps
+```
+Este ultimo ira apresentar apenas os containers em execução que representam o arquivo de composição.
+
+Para finalizar e remover os containers:
+```bash
+docker-compose down
+```
+
+Também é possível remover a imagem gerada pelo build fazendo:
+```bash
+docker-compose down --rmi local
+```
+
+Ou remover todas as imagens usadas pelo compose alterando o parâmetro `local` para `all`.
