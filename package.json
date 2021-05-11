@@ -1,0 +1,37 @@
+{
+  "name": "fullcycle-curso",
+  "version": "0.1.0",
+  "description": "Desafios do curso Fullcycle 2.0 da code.education",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trprado/fullcycle-curso.git"
+  },
+  "keywords": [
+    "curso",
+    "desafio",
+    "fullcycle",
+    "docker",
+    "git"
+  ],
+  "author": "Thiago Prado <trprado@outlook.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/trprado/fullcycle-curso/issues"
+  },
+  "homepage": "https://github.com/trprado/fullcycle-curso#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^6.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
