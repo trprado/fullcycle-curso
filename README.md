@@ -8,6 +8,8 @@ Resolução da serie de desafios do curso FullCycle da [Code.Education](https://
     + [Desafio Docker](#desafio-docker)
         * [Desafio 1 - Golang](#desafio-1---golang)
         * [Desafio 2 - MySQL-Node-Nginx](#desafio-2---mysql-node-nginx)
+    + [Desafio Git](#desafio-git)
+        * [Desafio 3 - Git](#desafio-3---git)
 
 ## Desafio Docker
 Desafios Docker/Containers.
@@ -82,3 +84,35 @@ docker-compose down --rmi local
 ```
 
 Ou remover todas as imagens usadas pelo compose alterando o parâmetro `local` para `all`.
+
+## Desafio Git
+
+### Desafio 3 - Git
+**links:**
+- [desafio-3-git](desafio-3-git)
+- [Métodologia Git Flow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow)
+- [Semantic Versioning](https://semver.org)
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- [Commitlint e Husk](https://commitlint.js.org/)
+- [Commitizen](http://commitizen.github.io/cz-cli/)
+
+Esse desafio trata-se apenas de gerar um commit assinado digitalmente. Porém também foi utilizadas no repositorio as metodologias Git Flow, Semantic Versioning e Conventional Commits. A pasta [desafio-3-git](desafio-3-git) foi criada para gerar conteúdo para o commit.
+
+Comando utilizados para gerar a GPG:
+```bash
+gpg --full-gen-key
+```
+Tipo de chave RSA and RSA de 4096 bits
+
+Descobrir a hash da chave para configura assinatura git:
+```bash
+gpg --list-secret-keys --keyid-format LONG
+```
+
+Configurar git para usar assinatura ao realizar *commit*:
+```bash
+git config --global user.asigningkey CHAVE
+git config --global commit.gpgsign true
+```
+
+Github configurado para usar a chave gerada ao realizar *commit* e *branchs* configurado para padrão ser o *branch* `develop`.
